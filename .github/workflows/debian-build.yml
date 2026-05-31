@@ -86,13 +86,21 @@ jobs:
           if ls public/debian/*.deb 1> /dev/null 2>&1; then
             echo ">>> Generating local APT repository metadata..."
             cd public/debian
-            apt-ftparchive packages . > Packages
+            
+            # Sanitize existing downloaded debs just in case
+            for file in *.deb; do
+              [ -e "$file" ] || continue
+              if [[ "$file" == *"+"* ]]; then
+                mv "$file" "${file//+/-}"
+              fi
+            done
+            
+            apt-ftparchive packages . | sed 's|Filename: \./|Filename: |' > Packages
             gzip -k -f Packages
             apt-ftparchive release . > Release
             cd ../..
             
             echo ">>> Adding local repository to APT sources..."
-            # This tells apt-get to look in your downloaded pool for missing dependencies!
             echo "deb [trusted=yes] file:${GITHUB_WORKSPACE}/public/debian ./" > /etc/apt/sources.list.d/local-nexus.list
             apt-get update
           else
@@ -190,6 +198,14 @@ jobs:
         run: |
           cd public/debian
           
+          echo ">>> Sanitizing .deb filenames to fix GitHub 404 URL encoding..."
+          for file in *.deb; do
+            [ -e "$file" ] || continue
+            if [[ "$file" == *"+"* ]]; then
+              mv "$file" "${file//+/-}"
+            fi
+          done
+          
           cat > apt-release.conf << 'EOF'
           APT::FTPArchive::Release {
             Origin "Debian-Nexus";
@@ -203,7 +219,7 @@ jobs:
           EOF
           
           echo ">>> Generating Packages index..."
-          apt-ftparchive packages . > Packages
+          apt-ftparchive packages . | sed 's|Filename: \./|Filename: |' > Packages
           gzip -k -f Packages
           
           echo ">>> Generating Release file..."
