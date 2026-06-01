@@ -15,7 +15,7 @@ jobs:
   build-and-index:
     runs-on: ubuntu-latest
     container:
-      image: debian:unstable
+      image: debian:testing
       options: --privileged
     defaults:
       run:
@@ -68,7 +68,7 @@ jobs:
         run: |
           LIST="${{ github.event.inputs.package_list }}"
           read -r -a PKGS <<< "$LIST"
-          TARGET_PKG="${PKGS[0]}"
+          TARGET_PKG="${PKGS}"
           REMAINING="${PKGS[@]:1}"
           
           echo "TARGET_PKG=$TARGET_PKG" >> "$GITHUB_ENV"
@@ -210,8 +210,8 @@ jobs:
           APT::FTPArchive::Release {
             Origin "Debian-Nexus";
             Label "Debian-Nexus";
-            Suite "unstable";
-            Codename "sid";
+            Suite "testing";
+            Codename "testing";
             Architectures "amd64";
             Components "main";
             Description "Automated Rolling Debian Repository";
