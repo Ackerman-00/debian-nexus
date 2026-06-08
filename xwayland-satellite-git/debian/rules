@@ -7,9 +7,13 @@ export RUSTFLAGS = -C target-cpu=x86-64-v3 -C opt-level=3
 	dh $@
 
 override_dh_auto_build:
-	cargo fetch
-	# Compile with the native systemd feature flag for sd-notify support
-	cargo build --release --features systemd
+	# Purge the vendored font to save space and rely on the system fonts-open-sans
+	rm -f OpenSans-Regular.ttf
+	
+	# Isolate the compilation runtime context and build with full features
+	export XDG_RUNTIME_DIR=$$(mktemp -d) && \
+	cargo fetch && \
+	cargo build --release --features systemd,fontconfig
 
 override_dh_auto_install:
 	mkdir -p debian/xwayland-satellite-git/usr/bin/
@@ -23,5 +27,5 @@ override_dh_auto_install:
 	cp -vf resources/xwayland-satellite.service debian/xwayland-satellite-git/usr/lib/systemd/user/xwayland-satellite.service
 	chmod 644 debian/xwayland-satellite-git/usr/lib/systemd/user/xwayland-satellite.service
 
-	# PikaOS path fix: Upstream defaults ExecStart to /usr/local/bin, we need /usr/bin
+	# Fix: Upstream defaults ExecStart to /usr/local/bin, we force /usr/bin to comply with Debian Policy
 	sed -i 's|ExecStart=.*|ExecStart=/usr/bin/xwayland-satellite|' debian/xwayland-satellite-git/usr/lib/systemd/user/xwayland-satellite.service
