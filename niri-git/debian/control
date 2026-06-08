@@ -7,6 +7,7 @@ Build-Depends: debhelper-compat (= 13),
  rustc (>= 1.85),
  clang,
  libclang-dev,
+ libcairo2-dev,
  libudev-dev,
  libgbm-dev,
  libxkbcommon-dev,
@@ -30,11 +31,11 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
  systemd,
  dbus-user-session,
  libwayland-server0
-Recommends: mesa-dri-drivers, mesa-libegl, xdg-desktop-portal-gnome, gnome-keyring,
+Recommends: libgl1-mesa-dri, libegl-mesa0, xdg-desktop-portal-gnome, gnome-keyring,
  xwayland-satellite | xwayland-satellite-git
 Suggests: xdg-desktop-portal-gtk, mako-notifier, alacritty, fuzzel
 Conflicts: niri
-Provides: niri
+Provides: niri, wayland-compositor
 Description: Scrollable-tiling Wayland compositor (Debian systemd build)
  Niri is a scrollable-tiling Wayland compositor. Windows are arranged in
  columns on an infinite strip going to the right. Every monitor has its own
