@@ -9,16 +9,30 @@ export RUSTFLAGS = -C target-cpu=x86-64-v3 -C opt-level=3
 	dh $@
 
 override_dh_auto_build:
-	cargo fetch
-	# The upstream default features are exactly what we want for Debian: 
-	# dbus, systemd, xdp-gnome-screencast
-	cargo build --release
+	# Extract the short commit string dynamically from the environment or local git branch
+	export NIRI_BUILD_COMMIT=$$(git rev-parse --short=7 HEAD 2>/dev/null || echo "git") && \
+	cargo fetch && \
+	cargo build --release --features default
+
+	# Generate shell completions safely by isolating the execution runtime context
+	export XDG_RUNTIME_DIR=$$(mktemp -d) && \
+	target/release/niri completions bash > ./niri.bash && \
+	target/release/niri completions fish > ./niri.fish && \
+	target/release/niri completions zsh > ./_niri
 
 override_dh_auto_install:
 	mkdir -p debian/niri-git/usr/bin/
 	mkdir -p debian/niri-git/usr/share/wayland-sessions/
 	mkdir -p debian/niri-git/usr/share/xdg-desktop-portal/
 	mkdir -p debian/niri-git/usr/lib/systemd/user/
+	
+	# Shell completions deployment target destinations
+	mkdir -p debian/niri-git/usr/share/bash-completion/completions/
+	mkdir -p debian/niri-git/usr/share/fish/vendor_completions.d/
+	mkdir -p debian/niri-git/usr/share/zsh/vendor-completions/
+	
+	# Documentation & Reference Config Architecture
+	mkdir -p debian/niri-git/usr/share/doc/niri-git/
 
 	# Install binaries safely
 	cp -vf target/release/niri debian/niri-git/usr/bin/niri
@@ -35,3 +49,12 @@ override_dh_auto_install:
 	# Native systemd user units provided by upstream repo
 	cp -vf resources/niri.service debian/niri-git/usr/lib/systemd/user/niri.service
 	cp -vf resources/niri-shutdown.target debian/niri-git/usr/lib/systemd/user/niri-shutdown.target
+
+	# Deploy shell auto-completions using standard vendor compliance paths
+	cp -vf niri.bash debian/niri-git/usr/share/bash-completion/completions/niri
+	cp -vf niri.fish debian/niri-git/usr/share/fish/vendor_completions.d/niri.fish
+	cp -vf _niri debian/niri-git/usr/share/zsh/vendor-completions/_niri
+
+	# Copy essential document references and templates
+	cp -vf resources/default-config.kdl debian/niri-git/usr/share/doc/niri-git/default-config.kdl
+	cp -vf README.md debian/niri-git/usr/share/doc/niri-git/README.md
