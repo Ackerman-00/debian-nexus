@@ -39,7 +39,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: brightnessctl, upower, fonts-roboto
 Suggests: wlsunset, wl-clipboard, mako-notification-daemon
 Conflicts: noctalia, noctalia-shell, noctalia-bin
-Provides: noctalia-shell
+Provides: noctalia, noctalia-shell
 Description: Sleek Wayland desktop shell (v5 alpha)
  Noctalia v5 is a complete C++ rewrite of the popular desktop shell,
  built directly on Wayland and OpenGL ES with cairo/pango rendering.
