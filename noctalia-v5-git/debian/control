@@ -31,7 +31,7 @@ Build-Depends: debhelper-compat (= 13),
  git
 Standards-Version: 4.6.2
 Rules-Requires-Root: no
-Homepage: https://github.com/noctalia-dev/noctalia-shell
+Homepage: https://github.com/noctalia-dev/noctalia
 
 Package: noctalia-v5-git
 Architecture: amd64
@@ -40,14 +40,12 @@ Recommends: brightnessctl, upower, fonts-roboto
 Suggests: wlsunset, wl-clipboard, mako-notification-daemon
 Conflicts: noctalia, noctalia-shell, noctalia-bin
 Provides: noctalia, noctalia-shell
-Description: Sleek Wayland desktop shell (v5 alpha)
- Noctalia v5 is a complete C++ rewrite of the popular desktop shell,
+Description: Sleek Wayland desktop shell
+ Noctalia is a complete C++ rewrite of the popular desktop shell,
  built directly on Wayland and OpenGL ES with cairo/pango rendering.
  It provides bars, panels, notifications, a dock, lock screen,
  wallpapers, OSD, and nearly 100 plugins — without pulling in Qt6.
  .
  Native support for Niri, Hyprland, Sway, Scroll, Labwc, and MangoWC.
- This package is compiled from the latest v5 branch source with
+ This package is compiled from the latest main branch source with
  optimizations for x86-64-v3.
- .
- Note: This is alpha software. Expect rough edges.
