@@ -1,3 +1,9 @@
+xwayland-satellite-git (0.8.1+git20260612.8575d0e-1) unstable; urgency=medium
+
+  * Automated git bump to 8575d0e
+
+ -- Nexus Build Bot <actions@github.com>  Fri, 12 Jun 2026 03:36:42 +0000
+
 xwayland-satellite-git (0.8.1+git20260530.5d1efbc-1) unstable; urgency=medium
 
   * Automated git bump to 5d1efbc
