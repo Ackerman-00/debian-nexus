@@ -1,3 +1,9 @@
+faugus-launcher (1.22.4+debian1) unstable; urgency=medium
+
+  * New upstream release 1.22.4
+
+ -- Nexus Build Bot <actions@github.com>  Sun, 14 Jun 2026 03:39:47 +0000
+
 faugus-launcher (1.22.2+debian1) unstable; urgency=medium
 
   * New upstream release 1.22.2
