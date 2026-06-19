@@ -1,3 +1,9 @@
+noctalia-v5-git (5.0.0+git20260619.7bc707b-1) unstable; urgency=medium
+
+  * Automated git bump to 7bc707b
+
+ -- Nexus Build Bot <actions@github.com>  Fri, 19 Jun 2026 03:57:29 +0000
+
 noctalia-v5-git (5.0.0+git20260618.e0a8158-1) unstable; urgency=medium
 
   * Automated git bump to e0a8158
