@@ -1,3 +1,9 @@
+protonplus (0.5.21+debian1) unstable; urgency=medium
+
+  * New upstream release 0.5.21
+
+ -- Nexus Build Bot <actions@github.com>  Wed, 24 Jun 2026 19:42:55 +0000
+
 protonplus (0.5.20+debian1) unstable; urgency=medium
 
   * Initial Debian Unstable packaging.
