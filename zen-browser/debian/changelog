@@ -1,3 +1,9 @@
+zen-browser (1.21.4b+debian1) unstable; urgency=medium
+
+  * New upstream release 1.21.4b
+
+ -- Nexus Build Bot <actions@github.com>  Sat, 27 Jun 2026 13:26:09 +0000
+
 zen-browser (1.21.3b+debian1) unstable; urgency=medium
 
   * New upstream release 1.21.3b
