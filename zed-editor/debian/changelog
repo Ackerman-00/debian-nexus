@@ -1,3 +1,9 @@
+zed-editor (1.9.0+debian1) unstable; urgency=medium
+
+  * New upstream release 1.9.0
+
+ -- Nexus Build Bot <actions@github.com>  Thu, 02 Jul 2026 00:14:14 +0000
+
 zed-editor (1.8.2+debian1) unstable; urgency=medium
 
   * New upstream release 1.8.2
