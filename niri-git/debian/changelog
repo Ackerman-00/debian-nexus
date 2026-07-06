@@ -1,3 +1,9 @@
+niri-git (26.04+git20260706.a30ca79-1) unstable; urgency=medium
+
+  * Automated git bump to a30ca79
+
+ -- Nexus Build Bot <actions@github.com>  Mon, 06 Jul 2026 00:12:07 +0000
+
 niri-git (26.04+git20260618.49fc611-1) unstable; urgency=medium
 
   * Automated git bump to 49fc611
