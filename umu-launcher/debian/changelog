@@ -1,3 +1,9 @@
+umu-launcher (1.2.4+git20260707.346cab8-1) unstable; urgency=medium
+
+  * Automated git bump to 346cab8
+
+ -- Nexus Build Bot <actions@github.com>  Tue, 07 Jul 2026 00:13:54 +0000
+
 umu-launcher (1.2.4+git20260624.9325b6d-1) unstable; urgency=medium
 
   * Automated git bump to 9325b6d
