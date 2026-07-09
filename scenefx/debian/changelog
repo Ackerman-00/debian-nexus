@@ -1,3 +1,9 @@
+scenefx (0.5+debian1) unstable; urgency=medium
+
+  * New upstream release 0.5
+
+ -- Nexus Build Bot <actions@github.com>  Thu, 09 Jul 2026 00:17:18 +0000
+
 scenefx (0.4.1+debian1) unstable; urgency=medium
 
   * Initial Debian Unstable packaging.
