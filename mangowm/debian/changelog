@@ -1,3 +1,9 @@
+mangowm (0.15.3+debian1) unstable; urgency=medium
+
+  * New upstream release 0.15.3
+
+ -- Nexus Build Bot <actions@github.com>  Sat, 18 Jul 2026 23:58:47 +0000
+
 mangowm (0.15.2+debian1) unstable; urgency=medium
 
   * New upstream release 0.15.2
